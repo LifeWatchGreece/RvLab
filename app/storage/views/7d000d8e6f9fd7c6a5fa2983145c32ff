@@ -1,0 +1,252 @@
+<script type='text/javascript'>
+    
+    function delete_job(jobId){
+        $( "#deleteJob"+jobId+"Form" ).submit();
+    }
+    
+</script>    
+
+<div class="row">
+    <div class="col-sm-6">
+         
+        <div class="panel panel-default" style="margin-top: 20px">
+            <div class="panel-heading" id="workspace-panel-heading">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
+                <strong>Workspace File Management</strong>
+                <div class="workspace-glyphicon">
+                    <span class="glyphicon glyphicon-chevron-down" style="color: gray" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="panel-body" style="display: none; background-color: #F2F3F9" id="workspace-panel-body">
+              <?php echo $workspace; ?>
+
+            </div>
+        </div> 
+        
+        <div style="font-weight: bold; margin-bottom: 5px">Recent Jobs:</div>
+        <div id="recent-jobs-wrapper">
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <th>Job ID</th>
+                    <th>Function</th>
+                    <th>Status</th>
+                    <th>Submitted At</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <?php if(empty($job_list)): ?>
+                    <tr>
+                        <td colspan="4">No job submitted recently</td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php foreach($job_list as $job): ?>
+                    <tr>
+                        <td><?php echo link_to('job/'.$job->id,'Job'.$job->id); ?></td>
+                        <td><?php echo $job->function; ?></td>
+                        <td style="text-align: center">
+                            <?php
+                                switch($job->status){
+                                    case 'creating':
+                                        echo "<div class='job_status status_creating'>Creating...</div>";
+                                        break;
+                                    case 'submitted':
+                                        echo "<div class='job_status status_submitted'>Submitted</div>";
+                                        break;
+                                    case 'queued':
+                                        echo "<div class='job_status status_queued'>Queued</div>";
+                                        break;
+                                    case 'completed':
+                                        echo "<div class='job_status status_completed'>Completed</div>";
+                                        break;
+                                    case 'failed':
+                                        echo "<div class='job_status status_failed'>Failed</div>";
+                                        break;
+                                }
+                            ?>
+                        </td>
+                        <td><?php echo $job->submitted_at; ?></td>
+                        <td style="min-width: 20px">
+                            <?php if(in_array($job->status,array('completed','failed','creating'))): ?>
+                                <span class="glyphicon glyphicon-remove delete_icon" onclick="javascript:delete_job(<?php echo $job->id; ?>)" title="Delete job"></span>
+                                <?php echo Form::open(array('url'=>'job/delete/'.$job->id,'name'=>'deleteJob'.$job->id.'Form','id'=>'deleteJob'.$job->id.'Form','style'=>'display:inline-block')); ?>                                                                                                                   
+                                    <input type='hidden' name='job_id' value='<?php echo $job->id; ?>'>
+                                <?php echo Form::close(); ?>
+
+                            <?php endif; ?>                           
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>                               
+        
+    </div>
+    <div class="col-sm-6">
+        
+        <div class="panel panel-default" style="margin-top: 20px">
+            <div class="panel-heading"  id="help-panel-heading">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 
+                <strong>Help</strong>    
+                <div class="help-glyphicon">
+                    <span class="glyphicon glyphicon-chevron-down" style="color: gray" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="panel-body" style="display: none; background-color: #F2F3F9" id="help-panel-body">
+                <img src='<?php echo asset('images/goal.png'); ?>' style='display: inline; width:17px; margin-right: 5px'> <?php echo link_to('files/R_vlab_about.pdf','About R vLab'); ?>
+
+                <br><br>
+                <img src='<?php echo asset('images/bookq.png'); ?>' style='display: inline; width:17px; margin-right: 5px'> <?php echo link_to('storage_policy','Storage Policy and Limitations'); ?>
+
+                <br><br>
+                <?php echo Form::open(array('url'=>'workspace/add_example_data','name'=>'addExampleData')); ?>
+
+                    <img src='<?php echo asset('images/files.png'); ?>' style='display: inline; width:17px; margin-right: 5px'>
+                    <label onclick="javascript:document.addExampleData.submit();" class="linkStyle">Add example data to your workspace</label>
+                <?php echo Form::close(); ?>                
+            </div>
+        </div>
+        
+        <div class="panel panel-default" style="margin-top: 20px">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 
+                <strong>Submit a new Job</strong>                
+            </div>
+            <div class="panel-body" style="background-color: #F2F3F9">
+                <script type="text/javascript">
+                    var selected_function = "taxa2dist";
+                </script>
+
+                <div class="container" style="width: 100%">
+
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div style="color: blue; font-weight: bold; margin-top: 7px">Statistical Function</div>
+                        </div>
+                        <div class="col-sm-7">
+                            <form id="new_description_form" class="form-horizontal">
+                                <select class="form-control" id="selected_function">
+                                    <?php foreach($r_functions as $codename => $title): ?>
+                                        <option value="<?php echo $codename; ?>"><?php echo $title; ?></option>
+                                    <?php endforeach; ?>
+                                    <option></option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>                                                                                                    
+
+                    <?php foreach($forms as $form): ?>
+                        <?php echo $form; ?>
+
+                    <?php endforeach; ?>    
+
+                </div>
+            </div>
+        </div>                        
+
+        <script type="text/javascript">           
+
+            (function job_refresher() {
+                $.ajax({
+                    url: '<?php echo url("get_user_jobs"); ?>', 
+                    type: "GET",
+                    dataType : 'json',
+                    success: function(data) {
+                        $('#recent-jobs-wrapper table tbody').empty();
+                        var tableString = '';
+                        var jobList = JSON.parse(data);
+                        if(jobList.length == 0){
+                            tableString = "<tr><td colspan='4'>No job submitted recently</td></tr>";
+                        }
+                        for(var i = 0; i < jobList.length; i++) {
+                            var job = jobList[i];
+                            tableString = tableString+"<tr>";
+                            tableString = tableString+"<td><a href='"+"<?php echo url('job/"+job.id+"'); ?>"+"'>Job"+job.id+"</a></td>";
+                            tableString = tableString+"<td>"+job.function+"</td>";
+                            tableString = tableString+"<td style='text-align:center'>";
+                            switch(job.status){
+                                case 'creating':
+                                    tableString = tableString+"<div class='job_status status_creating'>Creating...</div>";
+                                    break;
+                                case 'submitted':
+                                    tableString = tableString+"<div class='job_status status_submitted'>Submitted</div>";
+                                    break;
+                                case 'queued':
+                                    tableString = tableString+"<div class='job_status status_queued'>Queued</div>";
+                                    break;
+                                case 'completed':
+                                    tableString = tableString+"<div class='job_status status_completed'>Completed</div>";
+                                    break;
+                                case 'failed':
+                                    tableString = tableString+"<div class='job_status status_failed'>Failed</div>";
+                                    break;
+                            }
+                            tableString = tableString+"</td>";
+                            tableString = tableString+"<td>"+job.submitted_at+"</td>";
+                            tableString = tableString+"<td>";                            
+                            if((job.status == 'creating')||(job.status == 'completed')||(job.status == 'failed')){
+                                    action = "<?php echo url('job/delete'); ?>";
+                                    tableString = tableString+"<span class='glyphicon glyphicon-remove delete_icon' onclick='javascript:delete_job("+job.id+")' title='Delete job'></span></td>";                            
+                                    //tableString = tableString+"<?php echo Form::open(array('url'=>'job/delete/"+job.id+"','name'=>'deleteJob"+job.id+"Form','id'=>'deleteJob"+job.id+"Form','style'=>'display:inline-block')); ?>";
+                                    tableString = tableString+"<form action='"+action+'/'+job.id+"'  name='deleteJob"+job.id+"Form' id='deleteJob"+job.id+"Form' method='post' style='display:inline-block'>";
+                                    tableString = tableString+"<input type='hidden' name='job_id' value='"+job.id+"'>";
+                                    tableString = tableString+"</form>";
+                                    //tableString = tableString+"<?php echo Form::close(); ?>";  
+                                    //tableString = tableString+"</form>";
+                            }                            
+                            tableString = tableString+"</td>";
+                            tableString = tableString+"</tr>";
+                        }
+                        $('#recent-jobs-wrapper table tbody').html(tableString);
+                    },
+                    complete: function() {
+                        // Schedule the next request when the current one's complete
+                        setTimeout(job_refresher, 30000);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) 
+                    {
+                        toastr.error("Job status could not be refreshed automatically.");
+                    }
+                });
+            })();
+
+            $("#selected_function").change(function(){                
+               var old_function = selected_function;      
+               // Hide the previous form
+               var old_form_name = old_function+"_form";
+               $("#"+old_form_name).hide();
+               // Show the new form
+               selected_function = $(this).val();                
+               var form_name = selected_function+"_form";
+               $("#"+form_name).show();
+            });
+
+            $("input[type='file']").change(function(){
+                ul = $(this).parent().parent().parent().find('ul');
+                ul.empty();
+
+                for(var i=0; i< this.files.length; i++){
+                   var file = this.files[i];
+                   name = file.name.toLowerCase();
+                   size = file.size;
+                   type = file.type;
+                   ul.append("<li><span class='glyphicon glyphicon-file'></span> "+name+"</li>");
+                }
+             });
+             
+             $('.workspace-glyphicon').click(function(){
+                $('#workspace-panel-body').slideToggle();
+                $(this).find('span').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+             });
+             
+             $('.help-glyphicon').click(function(){
+                $('#help-panel-body').slideToggle();
+                $(this).find('span').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+             });
+             
+        </script>
+    </div>
+</div>
+
+
+        
+

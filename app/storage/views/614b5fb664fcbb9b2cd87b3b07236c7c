@@ -1,0 +1,107 @@
+<?php $function = "taxondive"; ?>
+
+<?php echo Form::open(array('url'=>'job','class'=>'form-horizontal','id'=>'taxondive_form','style'=>'display:none')); ?>        
+
+
+<br>
+<div style="color: blue; font-weight: bold">Input files</div>
+
+    <div class='radio_wrapper'>
+        <div class='configuration-label'>
+            Select community data matrix from workspace files 
+        </div>
+
+        <?php foreach($workspace_files as $file): ?>
+            <div class="radio">
+                <label>
+                  <input type="radio" name="box" value="<?php echo $file->filename; ?>">
+                  <?php echo $file->filename; ?>
+
+                </label>
+            </div>
+        <?php endforeach; ?>
+    </div>    
+    
+    <div class='select_wrapper'>
+        <div class='configuration-label'>
+            Select Transformation Method:  
+        </div>
+        <select name="transf_method_select" class='form-control'>
+            <option>none</option>
+            <!--<option value="total">total</option>-->
+            <option>max</option>
+            <option>freq</option>
+            <option>normalize</option>
+            <option>range</option>
+            <option>standardize</option>
+            <option>pa</option>
+            <option>chi.square</option>
+            <option>horn</option>
+            <option>hellinger</option>
+            <option>log</option>
+        </select>
+    </div>        
+    
+    <div class="checkbox checkbox_wrapper">
+        <label>
+            <input type="checkbox"  name="transpose" value="transpose" checked=""> Check to transpose matrix
+        </label>
+    </div>
+    
+    <div class='radio_wrapper'>
+        <div class='configuration-label'>
+            Select taxonomic distances among taxa for community data defined above (dist object)
+        </div>
+
+        <?php foreach($workspace_files as $file): ?>
+            <div class="radio">
+                <label>
+                  <input type="radio" name="box2" value="<?php echo $file->filename; ?>">
+                  <?php echo $file->filename; ?>
+
+                </label>
+            </div>
+        <?php endforeach; ?>
+    </div>        
+    
+    <div class='radio_wrapper'>
+        <div class='configuration-label'>
+            Select factor file (Optional): 
+        </div>
+
+        <?php foreach($workspace_files as $file): ?>
+            <div class="radio">
+                <label>
+                  <input type="radio" name="box3"  value="<?php echo $file->filename; ?>">
+                  <?php echo $file->filename; ?>
+
+                </label>
+            </div>
+        <?php endforeach; ?> 
+    </div>           
+
+    <div class="textarea_wrapper">
+        <div class='configuration-label'>
+            Select Column in Factor File: 
+        </div>
+        <input class="form-control" name="column_select" value="1">
+    </div>
+    
+    <div style="color: blue; font-weight: bold">Parameters</div>
+    
+    <div class='select_wrapper'>
+        <div class='configuration-label'>
+            match.force  
+        </div>
+        <select name="match_force">
+            <option selected="selected">FALSE</option>
+            <option>TRUE</option>
+        </select>
+    </div>    
+    
+    <input type="hidden" name="function" value="<?php echo $function; ?>">
+    <div style='text-align: center'>
+        <button class="btn btn-sm btn-primary">Run Function</button>
+    </div>
+
+<?php echo Form::close(); ?>

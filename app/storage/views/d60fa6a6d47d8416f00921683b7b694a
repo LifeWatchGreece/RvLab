@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><?php echo $title; ?></title>	
+        <?php echo $head; ?>
+
+        
+        <link rel="stylesheet" href="<?php echo asset('css/toastr.css'); ?>" />
+        <link rel="stylesheet" href="<?php echo asset('css/custom.css'); ?>" />
+        
+        <script type="text/javascript" src="<?php echo asset('js/toastr.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo asset('js/custom.js'); ?>"></script>
+</head>
+<body>
+        <?php echo $body_top; ?>
+
+        
+        <?php echo $content; ?>
+
+        
+        <?php echo $body_bottom; ?>
+
+</body>
+</html>
+<?php if(Session::has('toastr')): ?>
+    <? $toastr = Session::get('toastr') ?>
+    <script type="text/javascript">
+        switch('<?php echo $toastr[0]; ?>'){
+            case 'info':
+                toastr.info('<?php echo $toastr[1]; ?>');
+                break;
+            case 'success':
+                toastr.success('<?php echo $toastr[1]; ?>');
+                break;
+            case 'warning':
+                toastr.warning('<?php echo $toastr[1]; ?>');
+                break;
+            case 'error':
+                toastr.error('<?php echo $toastr[1]; ?>');
+                break;                
+        }
+
+    </script>
+<?php endif; ?>

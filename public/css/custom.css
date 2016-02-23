@@ -1,0 +1,254 @@
+.container {
+     margin-top: 50px;
+}
+
+.delete_icon, .delete_icon2 {
+    color: red;
+}
+
+.delete_icon:hover, .delete_icon2:hover {
+    cursor: pointer;
+}
+
+.radio_wrapper {
+    margin: 20px;
+}
+
+.radio_wrapper .configuration-label {
+    color: #0066CC;
+}
+
+.select_wrapper {
+    margin: 20px;
+}
+
+.select_wrapper .configuration-label , .textarea_wrapper .configuration-label, .input_wrapper .configuration-label {
+    color: #0066CC;
+    display: inline;
+}
+
+.select_wrapper select {
+    max-width: 150px;
+    display: inline;
+    margin-left: 20px;
+}
+
+.checkbox_wrapper {
+    margin: 20px;
+}
+
+.input_wrapper {
+    margin: 20px; 
+}
+
+.textarea_wrapper {
+    margin: 20px;    
+}
+
+.textarea_wrapper input, .input_wrapper input {
+    display: inline;
+    max-width: 50px;
+    margin-left: 20px;
+}
+
+.job_status {
+    width: 120px;
+    padding: 3px 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    margin: 0 auto;
+}
+
+.status_completed {
+    background-color: #6DA854;
+}
+
+.status_failed {
+    background-color: lightcoral;
+}
+
+.status_queued, .status_running {
+    background-color: #F4C03F;
+}
+
+.status_submitted {
+    background-color: #F4C03F;
+}
+
+.status_creating {
+    background-color: #C6C6C6;
+}
+
+.top-label {
+    padding: 5px 10px; 
+    background-color: #DBEAF9; 
+    text-align: left; 
+    border: 1px solid #B0C4FF; 
+    font-weight: bold; 
+    font-size: 16px; 
+    margin: 0px 10px;
+}
+
+.table {
+    background-color:  white;
+}
+
+.workspace-glyphicon, .help-glyphicon, .routput-glyphicon, .rimages-glyphicon {
+    float: right;
+}
+
+.workspace-glyphicon:hover, .help-glyphicon:hover, .routput-glyphicon:hover, .view-script-icon:hover, #close-r-panel:hover, .rimages-glyphicon:hover  { 
+    cursor: pointer;
+}
+
+.link-icon {
+    height: 35px;
+    margin-left: 10px;
+}
+
+.link-icon:hover {
+    cursor: pointer;
+}
+
+.completed_wrapper {
+    padding: 4px 10px; 
+}
+
+/*  CSS for admin pages */
+
+.speed_button {
+    text-align: center;
+    padding: 10px 20px;
+    background-color:#FCFCFC;
+    border: 1px solid gray;
+    border-radius: 4px;
+    display: inline-block;
+    min-width: 130px;
+    margin-bottom: 5px;
+}
+
+.speed_button:hover {
+    background-color: #e9e9e9;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.speed_button img {
+    height: 60px;
+}
+
+.speed_text {
+    color: gray;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.red-progress-bar {
+    background-color: #D90000;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15) inset;
+    color: #fff;
+    float: left;
+    font-size: 12px;
+    height: 100%;
+    text-align: center;
+    transition: width 0.6s ease 0s;
+}
+
+.thin-table td {
+    padding: 4px 8px !important;
+}
+
+.info-button {
+    width: 20px;    
+}
+
+.info-button:hover {
+    cursor: pointer;
+}
+
+/* Style fieldset elements  */
+fieldset.myversion {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 0 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.myversion {
+    font-size: 12px !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+
+}
+
+legend {
+    margin-bottom: 0px !important;
+}
+
+.change_column_icon{
+    margin-left: 8px; 
+    color:blue;
+}
+
+.change_column_icon:hover{   
+    cursor: pointer;
+}
+
+.admin_speed_links {
+    border-radius: 3px;
+    margin-left: 20px; 
+    border: 1px solid gray;
+    background-color: #fcfcfc;
+    height: 25px;
+    padding: 3px 3px 7px 4px;
+}
+
+.admin_speed_links img {
+    
+}
+
+.no-border-top {
+    margin-bottom: 0px !important;
+}
+
+.no-border-top tbody > tr > td, .no-border-top thead > tr > td, .no-border-top tfoot > tr > td {
+    border-top: 0px !important;
+}
+
+.linkStyle {
+    color: #428bca;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+    display: inline;
+}
+
+.linkStyle:hover {
+    cursor: pointer;
+    text-decoration: underline;    
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}

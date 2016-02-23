@@ -1,0 +1,96 @@
+<?php $function = "regression"; ?>
+
+<?php echo Form::open(array('url'=>'job','class'=>'form-horizontal','id'=>'regression_form','style'=>'display:none')); ?>               
+
+    <br>
+    <div style="color: blue; font-weight: bold">Input files</div>
+
+    <div class='radio_wrapper'>
+        <div class='configuration-label'>
+            Select enviromental factor file data from loaded files            
+        </div>
+
+        <?php foreach($workspace_files as $file): ?>
+            <div class="radio">
+                <label>
+                  <input type="radio" name="box" value="<?php echo $file->filename; ?>">
+                  <?php echo $file->filename; ?>
+
+                </label>
+            </div>
+        <?php endforeach; ?>
+    </div>        
+
+    <div class='select_wrapper'>
+        <div class='configuration-label'>
+            Select Transformation Method:  
+        </div>
+        <select name="transf_method_select" class='form-control'>
+            <option>none</option>
+            <option>max</option>
+            <option>freq</option>
+            <option>normalize</option>
+            <option>range</option>
+            <option>pa</option>
+            <option>chi.square</option>
+            <option>horn</option>
+            <option>hellinger</option>
+            <option>log</option>
+        </select>
+    </div>        
+    
+    <div class="checkbox checkbox_wrapper">
+        <label>
+            <input type="checkbox"  name="transpose" value="transpose" checked=""> Check to transpose matrix
+        </label>
+    </div>
+    
+    <br>
+    <div style="color: blue; font-weight: bold">Parameters</div>
+    
+    <div class='radio_wrapper'>
+        <div class='configuration-label'>
+            <strong>Factor File</strong>
+            lm is used to fit linear models. It can be used to carry out regression according to the following formulas:       
+        </div>
+        <div class="radio">
+            <label>
+              <input type="radio" name="single_or_multi" value="single" checked>
+              Single linear regression - fit<-lm(Factor1~Factor2, data)
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+              <input type="radio" name="single_or_multi" value="multi">
+              Multiple linear regression- fit2<-lm(Factor1~Factor2+Factor3, data)
+            </label>
+        </div>
+    </div>   
+    
+    <div class="textarea_wrapper">
+        <div class='configuration-label'>
+            Select Column in Factor File (Factor1) 
+        </div>
+        <input class="form-control" name="Factor_select1" value="1">
+    </div>
+    
+    <div class="textarea_wrapper">
+        <div class='configuration-label'>
+            Select Column in Factor File (Factor2)
+        </div>
+        <input class="form-control" name="Factor_select2" value="1">
+    </div>
+
+    <div class="textarea_wrapper">
+        <div class='configuration-label'>
+            Select Column in Factor File <br>(Factor3 - optional for two way Anova)
+        </div>
+        <input class="form-control" name="Factor_select3" value="1">
+    </div>
+    
+    <input type="hidden" name="function" value="<?php echo $function; ?>">
+    <div style='text-align: center'>
+        <button class="btn btn-sm btn-primary">Run Function</button>
+    </div>
+
+<?php echo Form::close(); ?>

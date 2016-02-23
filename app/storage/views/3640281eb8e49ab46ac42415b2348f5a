@@ -1,0 +1,135 @@
+<?php $function = "second_metamds"; ?>
+
+<?php echo Form::open(array('url'=>'job','class'=>'form-horizontal','id'=>'second_metamds_form','style'=>'display:none')); ?>        
+
+
+<br>
+<div style="color: blue; font-weight: bold">Input files</div>
+
+    <div class='radio_wrapper'>
+        <div class='configuration-label'>
+            Select community data file(s) from loaded files
+        </div>
+
+        <?php foreach($workspace_files as $file): ?>
+            <div class="radio">
+                <label>
+                  <input type="checkbox" name="box[]" value="<?php echo $file->filename; ?>">
+                  <?php echo $file->filename; ?>
+
+                </label>
+            </div>
+        <?php endforeach; ?>
+    </div>    
+    
+    <div class='select_wrapper'>
+        <div class='configuration-label'>
+            Select Transformation Method:  
+        </div>
+        <select name="transf_method_select" class='form-control'>
+            <option selected="selected">none</option>
+            <option>max</option>
+            <option>freq</option>
+            <option>normalize</option>
+            <option>range</option>
+            <option>pa</option>
+            <option>chi.square</option>
+            <option>horn</option>
+            <option>hellinger</option>
+            <option>log</option>
+        </select>
+    </div>        
+    
+    <div class="checkbox checkbox_wrapper">
+        <label>
+            <input type="checkbox"  name="transpose" value="transpose" checked=""> Check to transpose matrix
+        </label>
+    </div>              
+    <br>
+    <div style="color: blue; font-weight: bold">Parameters</div>
+    
+    <div class='select_wrapper'>
+        <div class='configuration-label'>
+            Method  
+        </div>
+        <select name="method_select">           
+              <option selected='selected'>euclidean</option>
+              <option>manhattan</option>
+              <option>canberra</option>
+              <option>bray</option>
+              <option>kulczynski</option>
+              <option>jaccard</option>
+              <option>gower</option>
+              <option>morisita</option>
+              <option>horn</option>
+              <option>mountford</option>
+              <option>raup</option>
+              <option>binomial</option>
+              <option>chao</option>
+        </select>
+    </div>    
+    
+    <div class="textarea_wrapper">
+        <div class='configuration-label'>
+            K 
+        </div>
+        <input class="form-control" name="k_select" value="2">
+    </div>
+    
+    <div class="textarea_wrapper">
+        <div class='configuration-label'>
+            trymax 
+        </div>
+        <input class="form-control" name="trymax" value="20">
+    </div>
+    
+    <div class='select_wrapper'>
+        <div class='configuration-label'>
+            autotransform  
+        </div>
+        <select name="autotransform_select">           
+              <option selected='selected'>TRUE</option>
+              <option>FALSE</option>
+        </select>
+    </div>    
+    
+    <div class="textarea_wrapper">
+        <div class='configuration-label'>
+            noshare 
+        </div>
+        <input class="form-control" name="noshare" value="0.1">
+    </div>
+    
+    <div class='select_wrapper'>
+        <div class='configuration-label'>
+            wascores  
+        </div>
+        <select name="wascores_select">           
+              <option selected='selected'>TRUE</option>
+              <option>FALSE</option>
+        </select>
+    </div>  
+    
+    <div class='select_wrapper'>
+        <div class='configuration-label'>
+            expand  
+        </div>
+        <select name="expand">           
+              <option selected='selected'>TRUE</option>
+              <option>FALSE</option>
+        </select>
+    </div> 
+    
+    <div class="textarea_wrapper">
+        <div class='configuration-label'>
+            trace 
+        </div>
+        <input class="form-control" name="trace" value="1">
+    </div>
+    
+    <input type="hidden" name="function" value="<?php echo $function; ?>">
+    <div style='text-align: center'>
+        <button class="btn btn-sm btn-primary">Run Function</button>
+    </div>
+
+<?php echo Form::close(); ?>

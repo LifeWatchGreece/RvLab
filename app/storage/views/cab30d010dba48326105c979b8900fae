@@ -1,0 +1,27 @@
+<?php echo Form::open(array('url'=>'registration')); ?>
+
+
+Get access to R vLab for:
+
+<div class="radio">
+  <label>
+    <input type="radio" name="registration_period" id="period_week" value="week" checked>
+    1 week
+  </label>
+</div>
+<div class="radio">
+  <label>
+    <input type="radio" name="registration_period" id="period_month" value="month">
+    1 month
+  </label>
+</div>
+<div class="radio">
+  <label>
+    <input type="radio" name="registration_period" id="period_semester" value="semester">
+    6 month
+  </label>
+</div>
+
+<button type='submit' class='btn btn-default'>Submit</button>
+
+<?php echo Form::close(); ?>

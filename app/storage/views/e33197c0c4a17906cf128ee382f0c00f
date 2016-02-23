@@ -1,0 +1,149 @@
+<div class="top-label">
+    Job<?php echo $job->id; ?> Information/Results <span style="color: #ef7c61; margin-left: 20px; font-weight: normal">(<?php echo $function; ?>)</span>
+    <img src="<?php echo asset('images/script1.png'); ?>" style="width: 25px; float: right" class="view-script-icon" title="View R script">
+    <a href="<?php echo url('/'); ?>" style="float:right; margin-right: 10px; font-size: 19px" title="Home Page"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+</div>
+<br>
+<div class="completed_wrapper">
+    <?php if(!empty($dir_prefix)): ?>
+
+        <div style="text-decoration: underline; margin-bottom: 10px; color: #8AA7FF; font-weight: bold">Files produced as output:</div>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <td style="text-align: left"><?php echo $dir_prefix.$blue_disk_extension; ?></td>
+                <td style="width:20%">
+                    <?php if($blue_disk_extension != '.png'): ?>
+                        <img src="<?php echo asset('images/add_file_green.png'); ?>" id="output1" onclick="add_output_to_workspace('<?php echo $dir_prefix.$blue_disk_extension; ?>',<?php echo $job->id; ?>,'output1')" class="link-icon" title="Add file to workspace">
+                    <?php endif; ?>
+                    <a href="<?php echo url('storage/get_job_file/job/'.$job->id.'/'.$dir_prefix.$blue_disk_extension); ?>" style="outline:0" download>
+                        <img src="<?php echo asset('images/download2.png'); ?>" class="link-icon" title="Download file">
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+    <?php endif; ?>
+
+    <br>
+    <div style="text-decoration: underline; margin-bottom: 10px; color: #8AA7FF; font-weight: bold">R output:</div>
+    <br>
+    <?php if(!empty($content)): ?>
+        <?php echo $content; ?>
+
+    <?php endif; ?>
+    
+    <?php if(($function != 'dwc_to_r')&&($function != 'metamds_visual')): ?> {
+        <?php foreach($lines as $line): ?>
+            <?php echo str_replace(" " , "&nbsp" ,$line); ?> <br>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <?php if(file_exists("$job_folder/transformed_dataAgg.csv")): ?>
+            <a href="<?php echo url('storage/get_job_file/job/'.$job->id.'/transformed_dataAgg.csv'); ?>">Aggregation file</a>
+            <br>
+        <?php endif; ?>
+        <br>
+        <a href="<?php echo url('storage/get_job_file/job/'.$job->id.'/transformed_dataFact.csv'); ?>">Factor file</a>
+        <br><br>
+    <?php endif; ?>
+    <br>
+
+    <?php foreach($images as $img): ?>
+            <img src="<?php echo url('storage/get_job_file/job/'.$job->id.'/'.$img); ?>" align="center" border="5">
+    <?php endforeach; ?>
+
+    <img src="<?php echo asset('images/loading.gif'); ?>" style="display:none" id="loading-image" />
+
+    <div class="panel panel-default" id="r-script-panel" style="display: none">
+        <div class="panel-heading">
+            <strong>R script</strong>
+            <span class="glyphicon glyphicon-remove" style="float:right; color: red" aria-hidden="true" id="close-r-panel"></span>
+        </div>
+      <div class="panel-body" style="height: 350px; overflow: auto">
+
+      </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">       
+
+function add_output_to_workspace(filename,jobId,elementId){
+    
+    var postData = { 
+	filename: filename, 
+        jobid: jobId, 
+    };
+    
+    $('#loading-image').center().show();  
+    $.ajax({
+        url : '<?php echo url("workspace/add_output_file"); ?>',
+        type: "POST",
+        data : postData,
+        dataType : 'json',
+        success:function(data, textStatus, jqXHR) 
+        {
+            toastr.success('File moved to your workspace successfully!');                
+        },
+        error: function(jqXHR, textStatus, errorThrown) 
+        {
+            switch (jqXHR.status) {
+                case 400: // Form validation failed
+                    toastr.error('Invalid request! File was not moved to your workspace!'); 
+                    break;
+                 case 401: // Unauthorized access
+                    toastr.error('Unauthorized access!');
+                    break;
+                case 428: // Target file name already exists
+                    toastr.error('A file with such a name already exists in your workspace!');
+                    break;
+                 case 500: // Unexpected error
+                    toastr.error("An unexpected error occured! Please contact system adminnistrator.");
+                    break;
+            }
+        },
+        complete: function(){
+          $('#loading-image').hide();
+        }
+    });
+}
+
+$('#close-r-panel').click(function(){
+    $('#r-script-panel').hide();
+});       
+         
+$('.view-script-icon').click(function(){    
+    $('#loading-image').center().show();  
+    $.ajax({
+        url : '<?php echo url("storage/get_r_script/".$job->id); ?>',
+        type: "GET",
+        dataType : 'json',
+        success:function(data, textStatus, jqXHR) 
+        {
+            $('#r-script-panel .panel-body').empty();
+            for(var i = 0; i < data.length; i++) {
+                $('#r-script-panel .panel-body').append(data[i]+"<br>");
+            }
+            $('#r-script-panel').center().show();          
+        },
+        error: function(jqXHR, textStatus, errorThrown) 
+        {
+            switch (jqXHR.status) {
+                case 400: // Form validation failed
+                    alert("R script could not be found");
+                    break;
+                 case 401: // Unauthorized access
+                    alert("You don't have access to this R script.");
+                    break;
+                 case 500: // Unexpected error
+                    alert("R script could not be retrieved.");
+                    break;
+            }
+        },
+        complete: function(){
+          $('#loading-image').hide();
+        }
+    });  
+});            
+       
+</script>       

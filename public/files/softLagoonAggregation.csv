@@ -1,0 +1,31 @@
+row_names,Species,genus,family,ordo,class,phylum,kingdom
+Abra alba,Abra alba,Abra,Semelidae,Veneroida,Bivalvia,Mollusca,Animalia
+Cerastoderma edule,Cerastoderma edule,Cerastoderma,Cardiidae,Veneroida,Bivalvia,Mollusca,Animalia
+Cerithium vulgatum,Cerithium vulgatum,Cerithium,Cerithiidae,[unassigned] Caenogastropoda,Gastropoda,Mollusca,Animalia
+Dexamine spinosa,Dexamine spinosa,Dexamine,Dexaminidae,Amphipoda,Malacostraca,Arthropoda,Animalia
+Eumida sanguinea,Eumida sanguinea,Eumida,Phyllodocidae,Phyllodocida,Polychaeta,Annelida,Animalia
+Gammarus aequicauda,Gammarus aequicauda,Gammarus,Gammaridae,Amphipoda,Malacostraca,Arthropoda,Animalia
+Idotea balthica basteri,Idotea balthica basteri,Idotea,Idoteidae,Isopoda,Malacostraca,Arthropoda,Animalia
+Loripes lucinalis,Loripes lucinalis,Loripes,Lucinidae,Lucinoida,Bivalvia,Mollusca,Animalia
+Paranemonia cinerea,Paranemonia cinerea,Paranemonia,Actiniidae,Actiniaria,Anthozoa,Cnidaria,Animalia
+Perinereis rullieri,Perinereis rullieri,Perinereis,Nereididae,Phyllodocida,Polychaeta,Annelida,Animalia
+Phylo foetida,Phylo foetida,Phylo,Orbiniidae,,Polychaeta,Annelida,Animalia
+Platyhelminthes,Platyhelminthes,,,,,Platyhelminthes,Animalia
+Armandia cirrhosa,Armandia cirrhosa,Armandia,Opheliidae,,Polychaeta,Annelida,Animalia
+Capitella capitata,Capitella capitata,Capitella,Capitellidae,,Polychaeta,Annelida,Animalia
+Sphaeroma serratum,Sphaeroma serratum,Sphaeroma,Sphaeromatidae,Isopoda,Malacostraca,Arthropoda,Animalia
+Tanais dulongii,Tanais dulongii,Tanais,Tanaididae,Tanaidacea,Malacostraca,Arthropoda,Animalia
+Anchialina agilis,Anchialina agilis,Anchialina,Mysidae,Mysida,Malacostraca,Arthropoda,Animalia
+Chironomidae,Chironomidae,,Chironomidae,Diptera,Insecta,Arthropoda,Animalia
+Oligochaeta,Oligochaeta,,,,Clitellata,Annelida,Animalia
+Pisidium,Pisidium,Pisidium,Sphaeriidae,Veneroida,Bivalvia,Mollusca,Animalia
+Ceratopogonidae,Ceratopogonidae,,Ceratopogonidae,Diptera,Insecta,Arthropoda,Animalia
+Sphaerium corneum,Sphaerium corneum,Sphaerium,Sphaeriidae,Veneroida,Bivalvia,Mollusca,Animalia
+Pontogammarus robustoides,Pontogammarus robustoides,Pontogammarus,Pontogammaridae,Amphipoda,Malacostraca,Arthropoda,Animalia
+Marenzelleria neglecta,Marenzelleria neglecta,Marenzelleria,Spionidae,Spionida,Polychaeta,Annelida,Animalia
+Marenzelleria,Marenzelleria,Marenzelleria,Spionidae,Spionida,Polychaeta,Annelida,Animalia
+Marenzelleria viridis,Marenzelleria viridis,Marenzelleria,Spionidae,Spionida,Polychaeta,Annelida,Animalia
+Turbellaria,Turbellaria,,,,Turbellaria,Platyhelminthes,Animalia
+Gammarus,Gammarus,Gammarus,Gammaridae,Amphipoda,Malacostraca,Arthropoda,Animalia
+Procladius,Procladius,Procladius,Chironomidae,Diptera,Insecta,Arthropoda,Animalia
+Glyptotendipes,Glyptotendipes,Glyptotendipes,Chironomidae,Diptera,Insecta,Arthropoda,Animalia

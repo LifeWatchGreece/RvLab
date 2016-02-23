@@ -1,0 +1,79 @@
+<?php $function = "parallel_mantel"; ?>
+
+<?php echo Form::open(array('url'=>'job','class'=>'form-horizontal','id'=>'parallel_mantel_form','style'=>'display:none')); ?>        
+
+
+<br>
+<div style="color: blue; font-weight: bold">Input files</div>
+
+    <div class='radio_wrapper'>
+        <div class='configuration-label'>
+            Select a dissimilarity structure as produced by dist from loaded files 
+        </div>
+
+        <?php foreach($workspace_files as $file): ?>
+            <div class="radio">
+                <label>
+                  <input type="radio" name="box" value="<?php echo $file->filename; ?>">
+                  <?php echo $file->filename; ?>
+
+                </label>
+            </div>
+        <?php endforeach; ?>
+    </div>                 
+    
+    <div class='radio_wrapper'>
+        <div class='configuration-label'>
+            Select a dissimilarity structure as produced by dist
+        </div>
+
+        <?php foreach($workspace_files as $file): ?>
+            <div class="radio">
+                <label>
+                  <input type="radio" name="box2" value="<?php echo $file->filename; ?>">
+                  <?php echo $file->filename; ?>
+
+                </label>
+            </div>
+        <?php endforeach; ?>
+    </div>        
+    
+    <div style="color: blue; font-weight: bold">Parameters</div>
+    
+    <div class='select_wrapper'>
+        <div class='configuration-label'>
+            Number of Processors  
+        </div>
+        <select name="No_of_processors">
+            <option selected="selected">1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>            
+    
+    <div class='select_wrapper'>
+        <div class='configuration-label'>
+            Method  
+        </div>
+        <select name="method_select">
+            <option selected='selected'>spearman</option>
+            <option>pearson</option>            
+            <option>canberra</option>
+        </select>
+    </div> 
+    
+    <div class="textarea_wrapper">
+        <div class='configuration-label'>
+            Permutations
+        </div>
+        <input class="form-control" name="permutations" value="999">
+    </div>
+    
+    <input type="hidden" name="function" value="<?php echo $function; ?>">
+    <div style='text-align: center'>
+        <button class="btn btn-sm btn-primary">Run Function</button>
+    </div>
+
+<?php echo Form::close(); ?>
