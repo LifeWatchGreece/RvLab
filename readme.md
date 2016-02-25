@@ -71,6 +71,7 @@ These three tasks should be executed by the same user that R vLab web applicatio
 A very basic authentication mechanism (login/logout) has been included in application's code. This mechanism is meant to change according to your access control requirements. The credentials of one and only user that exists in the database are:
 
 username: xayate2@yahoo.com 
+
 password: kodikos
 
 ##License
