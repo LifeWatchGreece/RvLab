@@ -67,3 +67,5 @@ The following three tasks are executed regularly by relevant cron jobs:
 These three tasks should be executed by the same user that R vLab web application is executed and so by the user who is owner of the application files.  
 
 
+#### License
+LifeWatchGreece R vLab is open-sourced software licensed under the MIT license.

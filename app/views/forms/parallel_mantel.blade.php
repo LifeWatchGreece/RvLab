@@ -2,13 +2,12 @@
 
 {{ Form::open(array('url'=>'job','class'=>'form-horizontal','id'=>'parallel_mantel_form','style'=>'display:none')) }}        
 
+{{ form_function_about('parallel_mantel',$tooltips) }}
 <br>
 <div style="color: blue; font-weight: bold">Input files</div>
 
-    {{ form_radio_files('parallel_mantel-box','Select a dissimilarity structure as produced by dist from loaded files',$tooltips,$workspace_files) }}
-    {{ form_checkbox('parallel_mantel-transpose1','Check to transpose matrix','transpose',true,$tooltips) }}               
+    {{ form_radio_files('parallel_mantel-box','Select a dissimilarity structure as produced by dist from loaded files',$tooltips,$workspace_files) }}            
     {{ form_radio_files('parallel_mantel-box2','Select a dissimilarity structure as produced by dist',$tooltips,$workspace_files) }}     
-    {{ form_checkbox('parallel_mantel-transpose2','Check to transpose matrix','transpose',true,$tooltips) }}
     <br>
     <div style="color: blue; font-weight: bold">Parameters</div>
     

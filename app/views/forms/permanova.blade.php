@@ -2,7 +2,7 @@
 
 {{ Form::open(array('url'=>'job','class'=>'form-horizontal','id'=>'permanova_form','style'=>'display:none')) }}        
 
-
+{{ form_function_about('permanova',$tooltips) }}
 <br>
 <div style="color: blue; font-weight: bold">Input files</div>
 

@@ -3684,19 +3684,7 @@ class JobController extends AuthController {
             return false;
         } else {
             $no_of_processors = $form['No_of_processors'];
-        }      
-        
-        if(empty($form['transpose1'])){
-            $transpose1 = "FALSE";
-        } else {
-            $transpose1 = 'TRUE';
-        }
-        
-        if(empty($form['transpose2'])){
-            $transpose2 = "FALSE";
-        } else {
-            $transpose2 = 'TRUE';
-        }
+        }              
         
         // Move input file from workspace to job's folder
         $workspace_filepath = $user_workspace.'/'.$box;
@@ -3728,9 +3716,9 @@ class JobController extends AuthController {
         fwrite($fh2, "#PBS -o $job_id.log\n");    // The log file will be moved to the job folder after the end of the R script execution
         fwrite($fh2, "#PBS -j oe\n");
         fwrite($fh2, "#PBS -m n\n");
-        fwrite($fh2, "#PBS -l nodes=1:ppn=1\n");    // Use 1 node and 1 CPU from this node
+        fwrite($fh2, "#PBS -l nodes=1:ppn=".$no_of_processors."\n");    // Use 1 node and 1 CPU from this node
         fwrite($fh2, "date\n");
-        fwrite($fh2, "mpiexec /usr/bin/Rscript $remote_job_folder/$job_id.R $remote_job_folder/$box $transpose1 $remote_job_folder/$box2 $transpose2 $remote_job_folder/ $method_select $permutations > $remote_job_folder/cmd_line_output.txt\n");        
+        fwrite($fh2, "mpiexec /usr/bin/Rscript $remote_job_folder/$job_id.R $remote_job_folder/$box FALSE $remote_job_folder/$box2 FALSE $remote_job_folder/ $method_select $permutations > $remote_job_folder/cmd_line_output.txt\n");        
         fwrite($fh2, "date\n");
         fwrite($fh2, "exit 0");
         fclose($fh2);

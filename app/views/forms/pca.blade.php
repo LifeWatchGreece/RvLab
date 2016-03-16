@@ -2,7 +2,7 @@
 
 {{ Form::open(array('url'=>'job','class'=>'form-horizontal','id'=>'pca_form','style'=>'display:none')) }}        
 
-
+{{ form_function_about('pca',$tooltips) }}
 <br>
 <div style="color: blue; font-weight: bold">Input files</div>
 

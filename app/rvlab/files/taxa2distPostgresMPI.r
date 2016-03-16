@@ -37,9 +37,9 @@ myrank <- comm.rank()
 
 
 # create pointers to DB
-LwDB <- src_postgres(dbname = "rpsqldb", user = "rpsql", password = "Rp0$+l3m3", host = "node0")
+LwDB <- src_postgres(dbname = "", user = "", password = "", host = "")
 drv <- dbDriver("PostgreSQL")
-con <- dbConnect(drv, dbname = "rpsqldb", user = "rpsql", password = "Rp0$+l3m3", host = "node0")
+con <- dbConnect(drv, dbname = "", user = "", password = "", host = "")
 
 
 

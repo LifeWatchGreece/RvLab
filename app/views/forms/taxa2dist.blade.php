@@ -2,6 +2,7 @@
 
 {{ Form::open(array('url'=>'job','class'=>'form-horizontal','id'=>'taxa2dist_form')) }}               
 
+    {{ form_function_about('taxa2dist',$tooltips) }}
     <br>
     <div style="color: blue; font-weight: bold">Input files</div>
 

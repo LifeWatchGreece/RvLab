@@ -2,6 +2,7 @@
 
 {{ Form::open(array('url'=>'job','class'=>'form-horizontal','id'=>'anosim_form','style'=>'display:none')) }}        
 
+{{ form_function_about('anosim',$tooltips) }}
 <br>
 <div style="color: blue; font-weight: bold">Input files</div>
 

@@ -7,6 +7,28 @@ function dateToTimezone($date_string,$timezone){
     return $mydate->format('d M Y H:i:s');
 }
 
+function form_function_about($function,$tooltips){
+    
+    $teaser_length = 180;
+    $html = "";
+    if(!empty($tooltips[$function.'-about'])){
+        
+        $about = $tooltips[$function.'-about'];
+        if(!empty($tooltips[$function.'-function-title'])){
+            $about = "<strong>".$tooltips[$function.'-function-title'].":</strong> ".$about;
+        }
+        if(strlen($about) > $teaser_length){
+            $teaser = substr($about,0,$teaser_length);
+            $html .= "<div id='$function-about-teaser' style='margin-top: 20px; color: gray'>$teaser... <a href='javascript:show_more(\"$function\")'>Read more</a></div>";  
+            $html .= "<div id='$function-about-all' style='margin-top: 20px; display: none'>$about</div>";   
+        } else {
+            $html .= "<div id='$function-about-all' style='margin-top: 20px'>$about</div>";
+        }                
+    }
+    
+    return $html;
+}
+
 function form_radio_files($tooltip_id,$labelText,$tooltips,$workspace_files){
     
     $parts = explode('-',$tooltip_id);

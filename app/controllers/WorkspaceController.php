@@ -214,6 +214,42 @@ class WorkspaceController extends AuthController {
                 $workspace_file->save();
             }            
             
+            $source = public_path().'/files/Macrobenthos_Classes_Adundance.csv';
+            $destination = $user_workspace_path.'/Macrobenthos_Classes_Adundance.csv';
+            if(!file_exists($destination)){
+                copy($source,$destination);
+            
+                $workspace_file = new WorkspaceFile();
+                $workspace_file->user_email = $user_email;
+                $workspace_file->filename = 'Macrobenthos_Classes_Adundance.csv';
+                $workspace_file->filesize = filesize($source);
+                $workspace_file->save();
+            }       
+            
+            $source = public_path().'/files/Macrobenthos_Crustacea_Adundance.csv';
+            $destination = $user_workspace_path.'/Macrobenthos_Crustacea_Adundance.csv';
+            if(!file_exists($destination)){
+                copy($source,$destination);
+            
+                $workspace_file = new WorkspaceFile();
+                $workspace_file->user_email = $user_email;
+                $workspace_file->filename = 'Macrobenthos_Crustacea_Adundance.csv';
+                $workspace_file->filesize = filesize($source);
+                $workspace_file->save();
+            }       
+            
+            $source = public_path().'/files/Macrobenthos_Femilies_Adundance.csv';
+            $destination = $user_workspace_path.'/Macrobenthos_Femilies_Adundance.csv';
+            if(!file_exists($destination)){
+                copy($source,$destination);
+            
+                $workspace_file = new WorkspaceFile();
+                $workspace_file->user_email = $user_email;
+                $workspace_file->filename = 'Macrobenthos_Femilies_Adundance.csv';
+                $workspace_file->filesize = filesize($source);
+                $workspace_file->save();
+            }       
+            
             Session::flash('toastr',array('success','Files added to workspace successfully!'));
             if($this->is_mobile){          
                 return Response::json(array(),200);

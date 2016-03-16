@@ -2,6 +2,7 @@
 
 {{ Form::open(array('url'=>'job','class'=>'form-horizontal','id'=>'parallel_taxa2dist_form','style'=>'display:none')) }}               
 
+    {{ form_function_about('parallel_taxa2dist',$tooltips) }}
     <br>
     <div style="color: blue; font-weight: bold">Input files</div>
     

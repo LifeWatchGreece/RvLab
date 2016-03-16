@@ -2,6 +2,7 @@
 
 {{ Form::open(array('url'=>'job','class'=>'form-horizontal','id'=>'metamds_visual_form','style'=>'display:none')) }}        
 
+{{ form_function_about('metamds_visual',$tooltips) }}
 <br>
 <div style="color: blue; font-weight: bold">Input files</div>
 

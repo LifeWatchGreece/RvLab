@@ -2,6 +2,7 @@
 
 {{ Form::open(array('url'=>'job','class'=>'form-horizontal','id'=>'convert2r_form','style'=>'display:none')) }}       
 
+    {{ form_function_about('convert2r',$tooltips) }}
     <br>
     <div style="color: blue; font-weight: bold">Input files</div>
 
