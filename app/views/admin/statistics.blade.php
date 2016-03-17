@@ -22,7 +22,7 @@
 
       // Set chart options
       var r_options = {
-                'title':'Users registered',
+                'title':'Users registered (estimation)',
                 'width':1000,
                 'height':400,
                 'titleTextStyle': {color: 'gray', fontSize: 20},    // change title style
@@ -42,7 +42,7 @@
 
       // Set chart options
       var f_options = {
-                'title':'Functions usage',
+                'title':'Functions usage (during the last 12 months)',
                 'width':1000,
                 'height':400,
                 'titleTextStyle': {color: 'gray', fontSize: 20},    // change title style
@@ -63,7 +63,7 @@
 
       // Set chart options
       var s_options = {
-                'title':'Job size statistics',
+                'title':'Job size statistics (during the last 12 months)',
                 'width':1000,
                 'height':400,
                 'titleTextStyle': {color: 'gray', fontSize: 20},    // change title style
@@ -98,7 +98,7 @@
                   label = '1MB-10MB';
                   break;
               case 5:
-                  label = '10MB-100KB';
+                  label = '10MB-100MB';
                   break;    
               case 6:
                   label = '100MB-1GB';

@@ -151,7 +151,10 @@ class RefreshStatusCommand extends Command {
                         $job_log->jobsize = $job->jobsize;
                         $job_log->inputs = $job->inputs;
                         $job_log->save();                                                
-                    }                    
+                    } else if(($status == 'running')&&(empty($job_log->started_at))){
+                        $job_log->started_at = $job->started_at;
+                        $job_log->save(); 
+                    }
                 }
                 
                 // Just for debbuging

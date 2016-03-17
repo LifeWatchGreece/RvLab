@@ -327,12 +327,17 @@ class JobController extends AuthController {
                     break;
                 case 'R':
                     $status = 'running';
+                    $started_at = $status_parts[3].' '.$status_parts[4];
                     break;
                 case 'ended':
                     $status = 'completed';
+                    $started_at = $status_parts[3].' '.$status_parts[4];
+                    $completed_at = $status_parts[5].' '.$status_parts[6];
                     break;
                 case 'ended_PBS_ERROR':
                     $status = 'failed';
+                    $started_at = $status_parts[3].' '.$status_parts[4];
+                    $completed_at = $status_parts[5].' '.$status_parts[6];
                     break;
             }
 
@@ -390,6 +395,9 @@ class JobController extends AuthController {
             $job_log->jobsize = $job->jobsize;
             $job_log->inputs = $job->inputs;
             $job_log->save();                        
+        } else if(($status == 'running')&&(empty($job_log->started_at))){
+            $job_log->started_at = $job->started_at;
+            $job_log->save(); 
         }
     }    
     

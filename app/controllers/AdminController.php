@@ -97,19 +97,27 @@ class AdminController extends AuthController {
         if ($day < 15)
             $month--;
         
+        // From last year's same month to last year's end
         for($j = $month; $j < 12; $j++){
+            // Get the middle day of this months
             $checkpoint = $prev_year."-".$limits[$j][2];
+            // Get registrations that were active during this day
             $regs = Registration::where('starts','<=',$checkpoint)
                     ->where('ends','>=',$checkpoint)
                     ->count();
+            // Store month label alogside the counted registrations
             $counts[] = array($limits[$j][0]." ".$prev_year, $regs);
         }
         
+        // From this year's start to previous month
         for($j = 0; $j < $month; $j++){
+            // Get the middle day of this months
             $checkpoint = $year."-".$limits[$j][2];
+            // Get registrations that were active during this day
             $regs = Registration::where('starts','<=',$checkpoint)
                     ->where('ends','>=',$checkpoint)
                     ->count();
+            // Store month label alogside the counted registrations
             $counts[] = array($limits[$j][0]." ".$year, $regs);
         }
         
